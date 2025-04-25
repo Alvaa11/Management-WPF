@@ -9,9 +9,17 @@ namespace GerenciamentoEstoque.Model
 {
     internal class UsersModel
     {
+        public UsersModel(string username = "", string password = "", bool is_admin = false)
+        {
+            this.Username = username;
+            this.Password = password;
+            this.isAdmin = is_admin;
+        }
+
         [Key]
         public int Id { get; set; }
         public string? Username { get; set; }
         public string? Password { get; set; }
+        public bool isAdmin { get; set; }
     }
 }
