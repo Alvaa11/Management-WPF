@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 using GerenciamentoEstoque.Context;
 using GerenciamentoEstoque.Model;
@@ -29,31 +30,38 @@ namespace GerenciamentoEstoque
         {
             using (UsersContext context = new UsersContext())
             {
-                if(AdminCheckBox.IsChecked == true)
-                {
-                    // Adiciona o usuário com permissão admin
+                bool isChecked = AdminCheckBox.IsChecked == true ? true : false;
+                UsersModel newUser = new UsersModel(UserTxt.Text, PassTxt.Password, isChecked);
 
-                    UsersModel newUser = new UsersModel(UserTxt.Text, PassTxt.Password, true);
+                if(VerificarUsuario(newUser) == false)
+                {
+                    // Adiciona o usuário com permissão admin            
                     context.Users.Add(newUser);
                     context.SaveChanges();
                     MessageBox.Show("Usuário Registrado com sucesso!");
+                    return;
                 }
                 else
                 {
-                    // Adiciona o usuário sem permissão admin
-
-                    UsersModel newUser = new UsersModel(UserTxt.Text, PassTxt.Password, false);
-                    context.Users.Add(newUser);
-                    context.SaveChanges();
-                    MessageBox.Show("Usuário Registrado com sucesso!");
-                }
-
-            }
+                    MessageBox.Show("Usuário já existe!");
+                    return;
+                }                                
+             }
         }
 
         private void Voltar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private bool VerificarUsuario(UsersModel user)
+        {
+            using (UsersContext context = new UsersContext())
+            {
+                bool userFound = context.Users.Any(context => context.Username == UserTxt.Text &&
+                                                                context.Password == PassTxt.Password);
+                return userFound;
+            }
         }
     }
 }

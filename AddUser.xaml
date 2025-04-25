@@ -25,12 +25,8 @@
                 </Border.Background>
             </Border>
             <StackPanel Grid.Row="0" VerticalAlignment="Center">
-                <Image Source="/adicionar-usuario.png" 
-                       Height="60" 
-                       Opacity="0.7"
-                       Margin="15"/>
                 <TextBlock Text="Adicionar Usuário" 
-                           FontSize="25"
+                           FontSize="35"
                            FontFamily="Helvetica"
                            FontWeight="Light" 
                            Foreground="#dad7cd"

@@ -14,7 +14,7 @@ namespace GerenciamentoEstoque.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=users.sqlite");
+            optionsBuilder.UseSqlite("Data Source=C:\\Users\\010454164\\Desktop\\Projetos\\Gerenciamento\\GerenciamentoEstoque\\bin\\Debug\\net8.0-windows\\users.sqlite");
         }
     }
 }
