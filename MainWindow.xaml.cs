@@ -9,6 +9,7 @@ namespace GerenciamentoEstoque
     /// </summary>
     public partial class MainWindow : Window
     {
+        UsersModel usersLoged;
         ProductModel NewProduct = new ProductModel();
         ProductModel selectProduct = new ProductModel();
         public MainWindow()
@@ -18,6 +19,11 @@ namespace GerenciamentoEstoque
             NovoProdutoGrid.DataContext = NewProduct;
         }
 
+        private void VerifyUser(object s, RoutedEventArgs e)
+        {
+            loginAdmin login = new loginAdmin();
+            login.Show();
+        }
         private void LoadProducts()
         {
             using (ProductContext context = new ProductContext())
@@ -27,9 +33,23 @@ namespace GerenciamentoEstoque
             }
         }
         
+        private void FilterBy(object s, RoutedEventArgs e)
+        {
+            string filter = SearchProduct.Text.ToLower();
+            using (ProductContext context = new ProductContext())
+            {
+                var products = context.Products.Where(p => p.Name.ToLower().Contains(filter)).ToList();
+                DataGridProdutos.ItemsSource = products;
+            }
+        }
         public void Button_Click(object s, RoutedEventArgs e)
         {
             CampNewProduct.Visibility = Visibility.Visible;
+        }
+        public void OpenAddUser(object s, RoutedEventArgs e)
+        {
+            AddUser addUser = new AddUser();
+            addUser.Show();
         }
         public void AddItem(object s, RoutedEventArgs e)
         {

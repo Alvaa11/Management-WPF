@@ -7,33 +7,31 @@ namespace GerenciamentoEstoque
     /// <summary>
     /// Lógica interna para AddUser.xaml
     /// </summary>
-    public partial class AddUser : Window
+    public partial class loginAdmin : Window
     {
-        public AddUser()
+        public loginAdmin()
         {
             InitializeComponent();
         }
-        private void Register(object s, RoutedEventArgs e)
+        private void Open(object s, RoutedEventArgs e)
         {
             using (UsersContext context = new UsersContext())
             {
-                bool isChecked = AdminCheckBox.IsChecked == true ? true : false;
-                UsersModel newUser = new UsersModel(UserTxt.Text, PassTxt.Password, isChecked);
+                UsersModel UserIsAdmin = new UsersModel(UserTxt.Text, PassTxt.Password);
 
-                if(VerificarUsuario(newUser) == false)
+                if (VerificarUsuario(UserIsAdmin) == false)
                 {
-                    // Adiciona o usuário com permissão admin            
-                    context.Users.Add(newUser);
-                    context.SaveChanges();
-                    MessageBox.Show("Usuário Registrado com sucesso!");
+                    MessageBox.Show("Você não tem autorização para acessar essa área!");
                     return;
                 }
                 else
                 {
-                    MessageBox.Show("Usuário já existe!");
+                    AddUser addUser = new AddUser();
+                    addUser.Show();
+                    this.Close();
                     return;
-                }                                
-             }
+                }
+            }
         }
 
         private void Voltar_Click(object sender, RoutedEventArgs e)

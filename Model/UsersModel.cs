@@ -10,7 +10,7 @@ namespace GerenciamentoEstoque.Model
     internal class UsersModel
     {
         public UsersModel() { }
-        public UsersModel(string user, string pass, bool adm)
+        public UsersModel(string user, string pass, bool adm = false)
         {
             Username = user;
             Password = pass;

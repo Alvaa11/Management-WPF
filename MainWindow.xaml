@@ -7,11 +7,13 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="817" Width="761">
     <Canvas Background="#7FFFFFFF" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden">
-        <Menu x:Name="Navigation" Height="104" Width="761" HorizontalAlignment="Center" VerticalAlignment="Top" Padding="10,20,10,0" Background="#C6034C3C"/>
+        <Menu x:Name="Navigation" Height="104" Width="761" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="10,20,10,0" Background="#C6034C3C">
+            <Button Content="Adicionar novo usuário" Height="45" Width="175" FontSize="15" Margin="0,10,0,0" Click="VerifyUser"/>
+        </Menu>
         <Rectangle x:Name="GridWrapper" Height="597" Canvas.Left="42" Stroke="#FF7FC29B" Canvas.Top="186" Width="684" RadiusX="1" RadiusY="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        <TextBox x:Name="SearchProduct" Canvas.Left="176" Canvas.Top="199" Width="284" HorizontalAlignment="Left" Height="25" VerticalAlignment="Center" FontSize="14" Cursor="IBeam"/>
-        <Button x:Name="SearchButton" Height="26" Canvas.Left="482" Canvas.Top="199" Width="72" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand" Content="PESQUISAR" Background="#FF7FC29B" BorderBrush="#FF7FC29B" Foreground="White" IsDefault="True"/>
-        <DataGrid x:Name="DataGridProdutos" Height="347" Width="665" Canvas.Left="53" Canvas.Top="247" HorizontalAlignment="Left" VerticalAlignment="Center" BorderBrush="{x:Null}" Background="White" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
+        <TextBox x:Name="SearchProduct" Canvas.Left="176" Canvas.Top="203" Width="284" HorizontalAlignment="Left" Height="25" VerticalAlignment="Center" FontSize="14" Cursor="IBeam"/>
+        <Button x:Name="SearchButton" Height="35" Canvas.Left="482" Canvas.Top="199" Width="102" HorizontalAlignment="Left" VerticalAlignment="Top" Cursor="Hand" Content="PESQUISAR" Background="#FF64B787" BorderBrush="#FF7FC29B" Click="FilterBy" IsDefault="True"/>
+        <DataGrid x:Name="DataGridProdutos" Height="347" Width="665" Canvas.Left="53" Canvas.Top="247" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
                   Grid.Row="1" ColumnWidth="*" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
@@ -22,14 +24,14 @@
                 <DataGridTemplateColumn Header="Editar">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Editar" Click="SelectProdutoEditar"></Button>
+                            <Button Background="Gray" Foreground="Black" FontSize="15" Content="Editar" Click="SelectProdutoEditar"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="Remover">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Remover" Click="RemoveItem"></Button>
+                            <Button Background="Gray" Foreground="Black" FontSize="15" Content="Remover" Click="RemoveItem"></Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -61,8 +63,8 @@
                         <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Price}" />
                         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Content="Quantidade" />
                         <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding InStock}"/>
-                        <Button Grid.Row="3" Grid.ColumnSpan="2" Width="150" Content="Adicionar"
-                                Margin="5" Click="AddItem" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Button Grid.Row="3" Grid.ColumnSpan="2" Height="35" Background="Black" Width="150" Content="Adicionar"
+                                Margin="5" FontSize="15" Click="AddItem" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Grid>
                 </StackPanel>
             </Border>
@@ -88,18 +90,20 @@
                         <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding Price}"/>
                         <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Content="Quantidade" Margin="-7,0,0,20" Grid.RowSpan="2" />
                         <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding InStock}"/>
-                        <Button Grid.Row="3" Grid.ColumnSpan="2" Width="150"
+                        <Button Grid.Row="3" Grid.ColumnSpan="2" Width="150" Height="35"
+                                Background="Black"
                                 Content="Salvar Alterações"
-                                Margin="5,0,0,0"
+                                Margin="25,5,0,0"
+                                FontSize="15"
                                 Click="UpdateItem"
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Center" Height="20"/>
+                                VerticalAlignment="Center"/>
                     </Grid>
                 </StackPanel>
             </Border>
         </Grid>
         <Label Content="GERENCIAMENTO DE ESTOQUE" Height="78" Canvas.Left="208" Canvas.Top="12" Width="354" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="22" FontWeight="Bold" Foreground="White"/>
-        <Button Content="+ NOVO" Canvas.Left="76" Click="Button_Click" Canvas.Top="199" Height="23" Width="75" FontSize="14" Foreground="White" BorderBrush="#FF7FC29B" Background="#FF64B787" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand"/>
+        <Button Content="+ NOVO" Height="35" Canvas.Left="76" Click="Button_Click" Canvas.Top="199"  Width="75" FontSize="14" Foreground="White" BorderBrush="#FF7FC29B" Background="#FF64B787" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center" Cursor="Hand"/>
 
     </Canvas>
 </Window>

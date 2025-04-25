@@ -105,7 +105,8 @@
                           Foreground="White"
                           Opacity="0.8"
                           HorizontalAlignment="Center" 
-                          VerticalAlignment="Center"/>
+                          VerticalAlignment="Center"
+                          Cursor="Hand"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal" 
@@ -116,7 +117,8 @@
                             FontSize="25"
                             Margin="0,20,0,0"
                             HorizontalAlignment="Left"
-                            Click="Register"/>
+                            Click="Register"
+                            Cursor="Hand"/>
                 
                     <Button Height="78"
                             Width="120"
@@ -124,7 +126,8 @@
                             FontSize="25"
                             Margin="20,20,0,0"
                             HorizontalAlignment="Right" 
-                            Click="Voltar_Click"/>
+                            Click="Voltar_Click"
+                            Cursor="Hand"/>
                     
                 </StackPanel>
             </StackPanel>

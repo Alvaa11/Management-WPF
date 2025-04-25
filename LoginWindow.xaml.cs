@@ -31,8 +31,8 @@ namespace GerenciamentoEstoque
         {
             using (UsersContext context = new UsersContext())
             {
-                bool userFound = context.Users.Any(context => context.Username == UsernameTextBox.Text &&
-                                                            context.Password == PasswordTextBox.Password);
+                bool userFound = context.Users.Any(context => context.Username == UserTxt.Text &&
+                                                            context.Password == PassTxt.Password);
                 if (userFound)
                 {
                     MainWindow mainWindow = new MainWindow();
@@ -44,6 +44,11 @@ namespace GerenciamentoEstoque
                     MessageBox.Show("Usuário ou senha inválidos.");
                 }
             }
+        }
+
+        public void OnClose(object s, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
