@@ -96,12 +96,22 @@ namespace GerenciamentoEstoque
             {
                 using (ProductContext context = new ProductContext())
                 {
-                    var ProductUpdate = (s as FrameworkElement).DataContext as ProductModel;
-                    context.Update(ProductUpdate);
-                    context.SaveChanges();
-                    LoadProducts();
-                    MessageBox.Show("Produto atualizado com sucesso!");
-                    CampUpdateProduct.Visibility = Visibility.Hidden;
+                    bool searchProduct = context.Products.Any(p => p.Equals(selectProduct));
+                    if (searchProduct == false)
+                    {
+                        MessageBox.Show("Produto não encontrado! Por favor, verifique se o produto ainda existe na lista!");
+                        return;
+                    }
+                    else
+                    {
+                        context.Update(selectProduct);
+                        var ProductUpdate = (s as FrameworkElement).DataContext as ProductModel;
+                        context.Update(ProductUpdate);
+                        context.SaveChanges();
+                        LoadProducts();
+                        MessageBox.Show("Produto atualizado com sucesso!");
+                        CampUpdateProduct.Visibility = Visibility.Hidden;
+                    }
                 }
             }
             else

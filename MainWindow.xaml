@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GerenciamentoEstoque"
         mc:Ignorable="d"
-        Title="MainWindow" Height="817" Width="761">
+        Title="Gerenciamento de Estoque" Height="817" Width="761"
+        ResizeMode="NoResize"
+        ScrollViewer.VerticalScrollBarVisibility="Auto">
     <Canvas Background="#7FFFFFFF" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden">
         <Menu x:Name="Navigation" Height="104" Width="761" HorizontalAlignment="Right" VerticalAlignment="Top" Padding="10,20,10,0" Background="#C6034C3C">
             <Button Content="Adicionar novo usuário" Height="45" Width="175" FontSize="15" Margin="0,10,0,0" Click="VerifyUser"/>
