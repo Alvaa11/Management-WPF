@@ -9,33 +9,46 @@ namespace GerenciamentoEstoque
     /// </summary>
     public partial class AddUser : Window
     {
+        UsersModel NewUser = new UsersModel();
+        UsersModel selectUserEditar = new UsersModel();
         public AddUser()
         {
             InitializeComponent();
+            LoadUsers();
+            NovoUserGrid.DataContext = NewUser;
+        }
+
+        private void LoadUsers()
+        {
+            using (UsersContext context = new UsersContext())
+            {
+                var users= context.Users.ToList();
+                DataGridUsers.ItemsSource = users;
+            }
         }
         private void Register(object s, RoutedEventArgs e)
         {
             using (UsersContext context = new UsersContext())
             {
                 bool isChecked = AdminCheckBox.IsChecked == true ? true : false;
-                UsersModel newUser = new UsersModel(UserTxt.Text, PassTxt.Password, isChecked);
-
-                if(VerificarUsuario(newUser) == false)
-                {
-                    // Adiciona o usuário com permissão admin            
-                    context.Users.Add(newUser);
-                    context.SaveChanges();
-                    MessageBox.Show("Usuário Registrado com sucesso!");
-                    return;
-                }
-                else
-                {
-                    MessageBox.Show("Usuário já existe!");
-                    return;
-                }                                
-             }
+                context.Add(NewUser);
+                context.SaveChanges();
+                LoadUsers();
+                NewUser = new UsersModel();
+                NovoUserGrid.DataContext = NewUser;
+                MessageBox.Show("Produto adicionado com sucesso!");
+            }
         }
-
+        private void SelectUserEditar(object s, RoutedEventArgs e)   
+        {
+            
+        }
+        private void RemoveUser(object s, RoutedEventArgs e)
+        {
+        }
+        private void UpdateUser(object s, RoutedEventArgs e)
+        {
+        }
         private void Voltar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

@@ -9,7 +9,6 @@ namespace GerenciamentoEstoque
     /// </summary>
     public partial class MainWindow : Window
     {
-        UsersModel usersLoged;
         ProductModel NewProduct = new ProductModel();
         ProductModel selectProduct = new ProductModel();
         public MainWindow()

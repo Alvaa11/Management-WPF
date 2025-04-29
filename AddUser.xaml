@@ -5,17 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GerenciamentoEstoque"
         mc:Ignorable="d"
-        Title="AddUser" Height="550" Width="380"
+        Title="AddUser" Height="550" Width="680"
         WindowStyle="None" ResizeMode="NoResize"
         AllowsTransparency="True" Background="Transparent">
     <Grid>
-        <Grid>
+        <Grid x:Name="NovoUserGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
             
-            <Border  Grid.RowSpan="2" 
+            <Border  Grid.RowSpan="2" Grid.ColumnSpan="2"
                     CornerRadius="20" Padding="20">
                 <Border.Background>
                     <LinearGradientBrush>
@@ -103,6 +107,9 @@
                           FontFamily="Helvetica"
                           FontSize="20"
                           Foreground="White"
+                          Background="Transparent"
+                          BorderBrush="White"
+                          BorderThickness="2"
                           Opacity="0.8"
                           HorizontalAlignment="Center" 
                           VerticalAlignment="Center"
@@ -119,7 +126,7 @@
                             HorizontalAlignment="Left"
                             Click="Register"
                             Cursor="Hand"/>
-                
+
                     <Button Height="78"
                             Width="120"
                             Content="Voltar"
@@ -128,8 +135,59 @@
                             HorizontalAlignment="Right" 
                             Click="Voltar_Click"
                             Cursor="Hand"/>
-                    
                 </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="0"
+                        Grid.Column="1">
+                <StackPanel>
+                    <DataGrid x:Name="DataGridUsers" Height="247" Width="328" HorizontalAlignment="Left" VerticalAlignment="Center" Background="Transparent" IsSynchronizedWithCurrentItem="True" AutoGenerateColumns="False"
+          Grid.Row="1" ColumnWidth="*" Margin="0,10,0,0" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                            <DataGridTextColumn Header="User" Binding="{Binding Username}" />
+                            <DataGridTextColumn Header="Adm" Binding="{Binding isAdmin}" />
+                            <DataGridTemplateColumn Header="Editar">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Background="Gray" Foreground="Black" FontSize="15" Content="Editar" Click="SelectUserEditar"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTemplateColumn Header="Remover">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Background="Gray" Foreground="Black" FontSize="15" Content="Remover" Click="RemoveUser"></Button>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="311">
+                <Label Content="Editar usuário" FontWeight="Light" FontSize="20" FontFamily="Helvetica" Foreground="White" Opacity="0.8" HorizontalAlignment="Center"
+        VerticalAlignment="Center"/>
+                <Grid x:Name="EditarUsuarioGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Content="Usuário" FontWeight="Light" FontSize="18" FontFamily="Helvetica" Foreground="White"/>
+                    <TextBox x:Name="EditarUsuario" Grid.Row="0" Grid.Column="1" Text="{Binding Username}"/>
+                    <Label  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Content="Senha" FontWeight="Light" FontSize="18" FontFamily="Helvetica" Foreground="White"/>
+                    <PasswordBox x:Name="EditarSenha" Grid.Row="1" Grid.Column="2" />
+                    <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Content="Tipo de usuário" FontWeight="Light" FontSize="18" FontFamily="Helvetica" Foreground="White"/>
+                    <CheckBox Grid.Row="2" Grid.Column="3" Content="Administrador" Background="Transparent" BorderBrush="White" BorderThickness="2" FontFamily="Helvetica" FontSize="15" FontWeight="Light" Foreground="White" Opacity="0.8"/>
+                    <Button Grid.Row="3" Grid.ColumnSpan="2" Height="35" Width="150" Content="Editar"
+                Margin="5" FontSize="18" Click="UpdateUser" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
             </StackPanel>
         </Grid>
     </Grid>
