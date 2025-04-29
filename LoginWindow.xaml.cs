@@ -50,5 +50,14 @@ namespace GerenciamentoEstoque
         {
             this.Close();
         }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+            {
+
+                this.DragMove();
+            }
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GerenciamentoEstoque"
         mc:Ignorable="d"
         Title="Login" Height="550" Width="380"
-        WindowStyle="None" ResizeMode="NoResize"
+        WindowStyle="None" ResizeMode="NoResize" MouseDown="Window_MouseDown"
         AllowsTransparency="True" Background="Transparent">
     <Grid>
         <Grid>
