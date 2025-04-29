@@ -146,13 +146,6 @@
                             <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
                             <DataGridTextColumn Header="User" Binding="{Binding Username}" />
                             <DataGridTextColumn Header="Adm" Binding="{Binding isAdmin}" />
-                            <DataGridTemplateColumn Header="Editar">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Button Background="Gray" Foreground="Black" FontSize="15" Content="Editar" Click="SelectUserEditar"></Button>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
                             <DataGridTemplateColumn Header="Remover">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -163,31 +156,6 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="311">
-                <Label Content="Editar usuário" FontWeight="Light" FontSize="20" FontFamily="Helvetica" Foreground="White" Opacity="0.8" HorizontalAlignment="Center"
-        VerticalAlignment="Center"/>
-                <Grid x:Name="EditarUsuarioGrid">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Label  Grid.Row="0" Grid.Column="0" HorizontalAlignment="Left" Content="Usuário" FontWeight="Light" FontSize="18" FontFamily="Helvetica" Foreground="White"/>
-                    <TextBox x:Name="EditarUsuario" Grid.Row="0" Grid.Column="1" Text="{Binding Username}"/>
-                    <Label  Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" Content="Senha" FontWeight="Light" FontSize="18" FontFamily="Helvetica" Foreground="White"/>
-                    <PasswordBox x:Name="EditarSenha" Grid.Row="1" Grid.Column="2" />
-                    <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left" Content="Tipo de usuário" FontWeight="Light" FontSize="18" FontFamily="Helvetica" Foreground="White"/>
-                    <CheckBox Grid.Row="2" Grid.Column="3" Content="Administrador" Background="Transparent" BorderBrush="White" BorderThickness="2" FontFamily="Helvetica" FontSize="15" FontWeight="Light" Foreground="White" Opacity="0.8"/>
-                    <Button Grid.Row="3" Grid.ColumnSpan="2" Height="35" Width="150" Content="Editar"
-                Margin="5" FontSize="18" Click="UpdateUser" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
             </StackPanel>
         </Grid>
     </Grid>

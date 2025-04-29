@@ -10,7 +10,6 @@ namespace GerenciamentoEstoque
     public partial class AddUser : Window
     {
         UsersModel NewUser = new UsersModel();
-        UsersModel selectUserEditar = new UsersModel();
         public AddUser()
         {
             InitializeComponent();
@@ -30,25 +29,34 @@ namespace GerenciamentoEstoque
         {
             using (UsersContext context = new UsersContext())
             {
-                bool isChecked = AdminCheckBox.IsChecked == true ? true : false;
-                context.Add(NewUser);
-                context.SaveChanges();
-                LoadUsers();
-                NewUser = new UsersModel();
-                NovoUserGrid.DataContext = NewUser;
-                MessageBox.Show("Produto adicionado com sucesso!");
+                if (VerificarUsuario(NewUser) == true)
+                {
+                    MessageBox.Show("Usuário já existe! Por favor, escolha outro nome de usuário.");
+                }
+                else
+                {
+                    int isChecked = AdminCheckBox.IsChecked == true ? 1 : 0;
+                    UsersModel newUser = new UsersModel(UserTxt.Text, PassTxt.Password, isChecked);
+                    context.Add(newUser);
+                    context.SaveChanges();
+                    LoadUsers();
+                    NovoUserGrid.DataContext = NewUser;
+                    MessageBox.Show("Usuário adicionado com sucesso!");
+                }
             }
         }
-        private void SelectUserEditar(object s, RoutedEventArgs e)   
-        {
-            
-        }
+       
         private void RemoveUser(object s, RoutedEventArgs e)
         {
+            using (UsersContext context = new UsersContext())
+            {
+                var UserDelete = (s as FrameworkElement).DataContext as UsersModel;
+                context.Remove(UserDelete);
+                context.SaveChanges();
+                LoadUsers();
+            }
         }
-        private void UpdateUser(object s, RoutedEventArgs e)
-        {
-        }
+      
         private void Voltar_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -58,8 +66,7 @@ namespace GerenciamentoEstoque
         {
             using (UsersContext context = new UsersContext())
             {
-                bool userFound = context.Users.Any(context => context.Username == UserTxt.Text &&
-                                                                context.Password == PassTxt.Password);
+                bool userFound = context.Users.Any(context => context.Username == UserTxt.Text);
                 return userFound;
             }
         }
